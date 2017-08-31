@@ -17,11 +17,11 @@ h = httplib2.Http()
 	}
 	post_data_format = json.dumps(geo_data,indent=4)
 	response, content = h.request(uri="http://localhost:8000/geo/", method="POST", headers=headers, body=post_data_format)
-	#pprint(response)
-	#pprint(content)
+	pprint(response)
+	pprint(content)
 	geo_url = json.loads(content.decode())
-	#pprint(geo_url)
-	#print('\n')
+	pprint(geo_url)
+	print('\n')
 
 	address_data = {
     	"street": user['address']['street'],
@@ -32,11 +32,11 @@ h = httplib2.Http()
 	}
 	post_data_format = json.dumps(address_data,indent=4)
 	response, content = h.request(uri="http://localhost:8000/address/", method="POST", headers=headers, body=post_data_format)
-	#pprint(response)
-	#pprint(content)
+	pprint(response)
+	pprint(content)
 	address_url = json.loads(content.decode())
-	#pprint(address_url)
-	#print('\n')
+	pprint(address_url)
+	print('\n')
 
 	user_data = {
 		"id" : user['id'],
@@ -46,9 +46,9 @@ h = httplib2.Http()
 	}
 	post_data_format = json.dumps(user_data,indent=4)
 	response, content = h.request(uri="http://localhost:8000/user/", method="POST", headers=headers, body=post_data_format)
-	#pprint(response)
-	#pprint(content)
-	#print('\n')
+	pprint(response)
+	pprint(content)
+	print('\n')'''
 for post in data['posts']:
 	post_data = {
 		'id' : post['id'],
@@ -60,7 +60,7 @@ for post in data['posts']:
 	response, content = h.request(uri="http://localhost:8000/post/", method="POST", headers=headers, body=post_data_format)
 	pprint(response)
 	pprint(content)
-	print('\n')'''
+	print('\n')
 
 for comment in data['comments']:
 	comment_data = {
