@@ -10,7 +10,7 @@ with open('db.json') as data_file:
 #insert users
 headers = {'Content-type': "application/json"}
 h = httplib2.Http()
-'''for user in data['users']:	
+for user in data['users']:	
 	geo_data = {
 		"lat" : user['address']['geo']['lat'],
 	    "lng": user['address']['geo']['lng'],
@@ -48,7 +48,7 @@ h = httplib2.Http()
 	response, content = h.request(uri="http://localhost:8000/user/", method="POST", headers=headers, body=post_data_format)
 	pprint(response)
 	pprint(content)
-	print('\n')'''
+	print('\n')
 for post in data['posts']:
 	post_data = {
 		'id' : post['id'],
