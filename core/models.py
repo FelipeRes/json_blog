@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Geo(models.Model):
@@ -13,13 +13,16 @@ class Address(models.Model):
 	zipcode = models.CharField(max_length=10)
 	geo = models.ForeignKey(Geo)
 
-class User(models.Model):
-	name = models.CharField(max_length=256)
-	email = models.EmailField()
+class Perfil(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	address = models.ForeignKey(Address)
+	
+	@property
+	def username(self):
+		return self.user.username
 
 class Post(models.Model):
-	user = models.ForeignKey(User, related_name="posts")
+	perfil = models.ForeignKey(Perfil, related_name="posts", )
 	title = models.CharField(max_length=128)
 	body = models.TextField()
 

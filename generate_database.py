@@ -36,23 +36,38 @@ for user in data['users']:
 	pprint(content)
 	address_url = json.loads(content.decode())
 	pprint(address_url)
-	print('\n')
+	print('\nTenta inserir Usuario ' + user['username'])
 
 	user_data = {
 		"id" : user['id'],
-    	"name": user['name'],
+    	"username": user['username'],
     	"email": user['email'],
-    	"address": address_url['url'],
+    	"password": 'abcd4321',
 	}
 	post_data_format = json.dumps(user_data,indent=4)
 	response, content = h.request(uri="http://localhost:8000/user/", method="POST", headers=headers, body=post_data_format)
 	pprint(response)
 	pprint(content)
+	user_url = json.loads(content.decode())
+	pprint(user_url)
+	print('\nTenta inserir Perfil')
+
+	perfil_data = {
+		"id" : user['id'],
+		"user" : user_url['url'],
+		"address" : address_url['url'],
+	}
+
+	post_data_format = json.dumps(perfil_data,indent=4)
+	response, content = h.request(uri="http://localhost:8000/perfil/", method="POST", headers=headers, body=post_data_format)
+	pprint(response)
+	pprint(content)
 	print('\n')
+
 for post in data['posts']:
 	post_data = {
 		'id' : post['id'],
-		'user' : 'http://localhost:8000/user/' + str(post['userId'])+'/',
+		'perfil' : 'http://localhost:8000/perfil/' + str(post['userId'])+'/',
 		'title' : post['title'],
 		'body' : post['body'],
 	}
