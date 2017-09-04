@@ -57,7 +57,7 @@ for user in data['users']:
 		"user" : user_url['url'],
 		"address" : address_url['url'],
 	}
-
+	
 	post_data_format = json.dumps(perfil_data,indent=4)
 	response, content = h.request(uri="http://localhost:8000/perfil/", method="POST", headers=headers, body=post_data_format)
 	pprint(response)

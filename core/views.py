@@ -83,5 +83,8 @@ class ApiRoot(generics.GenericAPIView):
 	name = 'api-root'
 	def get(self, request, *args, **kwargs):
 		return Response({
+			'perfils':reverse(UserList.name, request=request),
+			'posts':reverse(PostList.name, request=request),
+			'comments':reverse(CommentList.name, request=request),
 			'users':reverse(UserList.name, request=request),
 			})
